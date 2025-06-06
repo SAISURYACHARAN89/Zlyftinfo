@@ -35,12 +35,12 @@ export type DockProps = {
   spring?: SpringOptions;
 };
 
-// Explicitly extend HTMLMotionProps so we get all native props including className
 interface DockItemProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   spring: SpringOptions;
   baseItemSize: number;
   magnification: number;
+  className?: string; // Added this line
 }
 
 function DockItem({
