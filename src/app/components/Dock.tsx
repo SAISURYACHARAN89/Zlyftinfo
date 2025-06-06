@@ -7,6 +7,7 @@ import {
   useTransform,
   type SpringOptions,
   AnimatePresence,
+  type HTMLMotionProps,
 } from "framer-motion";
 import React, {
   Children,
@@ -15,7 +16,6 @@ import React, {
   useState,
   ReactNode,
   DetailedReactHTMLElement,
-  HTMLAttributes,
 } from "react";
 
 export type DockItemData = {
@@ -35,7 +35,7 @@ export type DockProps = {
   spring?: SpringOptions;
 };
 
-type DockItemProps = HTMLAttributes<HTMLDivElement> & {
+type DockItemProps = HTMLMotionProps<"div"> & {
   children: ReactNode;
   onClick?: () => void;
   spring: SpringOptions;
@@ -169,6 +169,7 @@ export default function Dock({
             baseItemSize={baseItemSize}
           >
             <DockIcon>{item.icon}</DockIcon>
+            {/* Pass the same isHovered motion value to label so it syncs */}
             <DockLabel isHovered={useMotionValue(0)}>{item.label}</DockLabel>
           </DockItem>
         ))}
