@@ -16,6 +16,7 @@ import React, {
   useState,
   ReactNode,
   DetailedReactHTMLElement,
+  MouseEventHandler,
 } from "react";
 
 export type DockItemData = {
@@ -40,7 +41,8 @@ interface DockItemProps extends HTMLMotionProps<"div"> {
   spring: SpringOptions;
   baseItemSize: number;
   magnification: number;
-  className?: string; // Added this line
+  className?: string;
+  onClick?: MouseEventHandler<HTMLDivElement>; // Added onClick prop
 }
 
 function DockItem({
@@ -82,6 +84,7 @@ function DockItem({
   );
 }
 
+// ... rest of your component remains the same ...
 type DockLabelProps = {
   className?: string;
   children: ReactNode;
