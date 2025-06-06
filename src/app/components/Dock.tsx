@@ -8,6 +8,7 @@ import {
   type SpringOptions,
   type HTMLMotionProps,
   AnimatePresence,
+  MotionStyle,
 } from "framer-motion";
 import React, {
   Children,
@@ -41,8 +42,7 @@ interface DockItemProps extends HTMLMotionProps<"div"> {
   spring: SpringOptions;
   baseItemSize: number;
   magnification: number;
-  className?: string;
-  onClick?: MouseEventHandler<HTMLDivElement>; // Added onClick prop
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 function DockItem({
@@ -63,7 +63,11 @@ function DockItem({
 
   return (
     <motion.div
-      style={{ width: baseItemSize, height: baseItemSize, scale }}
+      style={{
+        width: baseItemSize,
+        height: baseItemSize,
+        scale,
+      } as MotionStyle}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
       onClick={onClick}
@@ -84,7 +88,6 @@ function DockItem({
   );
 }
 
-// ... rest of your component remains the same ...
 type DockLabelProps = {
   className?: string;
   children: ReactNode;
@@ -161,33 +164,19 @@ export default function Dock({
           boxShadow: "0 8px 20px rgba(0, 0, 0, 0.4)",
         }}
       >
-        {items.map((item, index) => {
-          // Create a single isHovered MotionValue per item to pass both to DockItem and DockLabel
-          const isHovered = useMotionValue(0);
-          return (
-            <DockItem
-              key={index}
-              onClick={item.onClick}
-              className={item.className}
-              spring={spring}
-              magnification={magnification}
-              baseItemSize={baseItemSize}
-              onHoverStart={() => isHovered.set(1)}
-              onHoverEnd={() => isHovered.set(0)}
-              style={{
-                width: baseItemSize,
-                height: baseItemSize,
-                scale: useSpring(
-                  useTransform(isHovered, [0, 1], [1, magnification / baseItemSize]),
-                  spring
-                ),
-              }}
-            >
-              <DockIcon>{item.icon}</DockIcon>
-              <DockLabel isHovered={isHovered}>{item.label}</DockLabel>
-            </DockItem>
-          );
-        })}
+        {items.map((item, index) => (
+          <DockItem
+            key={index}
+            onClick={item.onClick}
+            className={item.className}
+            spring={spring}
+            magnification={magnification}
+            baseItemSize={baseItemSize}
+          >
+            <DockIcon>{item.icon}</DockIcon>
+            <DockLabel isHovered={useMotionValue(0)}>{item.label}</DockLabel>
+          </DockItem>
+        ))}
       </div>
     </motion.div>
   );
