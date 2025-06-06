@@ -68,26 +68,28 @@ function DockItem({
   );
 
   return (
-    <motion.div
-      style={{
-        width: baseItemSize,
-        height: baseItemSize,
-        scale,
-      } as MotionStyle}
-      onHoverStart={() => isHovered.set(1)}
-      onHoverEnd={() => isHovered.set(0)}
-      onClick={onClick}
-      className={`relative inline-flex items-center justify-center rounded-2xl transition-transform duration-200 ${className}`}
-      tabIndex={0}
-      role="button"
-      aria-haspopup="true"
-      onFocus={() => isHovered.set(1)}
-      onBlur={() => isHovered.set(0)}
-      {...rest}
-    >
-      {enhancedChildren}
-    </motion.div>
-  );
+  
+  <motion.div<HTMLDivElement>
+    style={{
+      width: baseItemSize,
+      height: baseItemSize,
+      scale,
+    } as MotionStyle}
+    onHoverStart={() => isHovered.set(1)}
+    onHoverEnd={() => isHovered.set(0)}
+    onClick={onClick}
+    className={`relative inline-flex items-center justify-center rounded-2xl transition-transform duration-200 ${className}`}
+    tabIndex={0}
+    role="button"
+    aria-haspopup="true"
+    onFocus={() => isHovered.set(1)}
+    onBlur={() => isHovered.set(0)}
+    {...rest}
+  >
+    {enhancedChildren}
+  </motion.div>
+);
+  
 }
 
 type DockLabelProps = {
