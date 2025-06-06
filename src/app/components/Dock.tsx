@@ -37,12 +37,13 @@ export type DockProps = {
   spring?: SpringOptions;
 };
 
-interface DockItemProps extends HTMLMotionProps<"div"> {
+interface DockItemProps extends Omit<HTMLMotionProps<"div">, "onClick"> {
   children: ReactNode;
   spring: SpringOptions;
   baseItemSize: number;
   magnification: number;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  className?: string; // Explicitly declare className
 }
 
 function DockItem({
