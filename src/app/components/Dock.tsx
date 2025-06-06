@@ -61,23 +61,22 @@ function DockItem({
 
   return (
   <motion.div
-    {...({
-      style: { width: baseItemSize, height: baseItemSize, scale },
-      onHoverStart: () => isHovered.set(1),
-      onHoverEnd: () => isHovered.set(0),
-      onFocus: () => isHovered.set(1),
-      onBlur: () => isHovered.set(0),
-      onClick,
-      tabIndex: 0,
-      role: "button",
-      "aria-haspopup": "true",
-      className: `relative inline-flex items-center justify-center rounded-2xl transition-transform duration-200 ${className}`,
-    } as React.HTMLAttributes<HTMLDivElement>)}
-  >
-    {Children.map(children, (child) =>
-      cloneElement(child as React.ReactElement, { isHovered })
-    )}
-  </motion.div>
+  style={{ width: baseItemSize, height: baseItemSize, scale }}
+  onHoverStart={() => isHovered.set(1)}
+  onHoverEnd={() => isHovered.set(0)}
+  onClick={onClick}
+  className={`relative inline-flex items-center justify-center rounded-2xl transition-transform duration-200 ${className}`}
+  tabIndex={0}
+  role="button"
+  aria-haspopup="true"
+  onFocus={() => isHovered.set(1)}
+  onBlur={() => isHovered.set(0)}
+>
+  {Children.map(children, (child) =>
+    cloneElement(child as React.ReactElement, { isHovered })
+  )}
+</motion.div>
+
   );
 }
 
