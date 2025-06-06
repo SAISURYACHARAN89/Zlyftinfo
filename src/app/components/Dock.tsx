@@ -62,6 +62,11 @@ function DockItem({
     spring
   );
 
+  // Clone children to inject isHovered
+  const enhancedChildren = Children.map(children, (child) =>
+    cloneElement(child as React.ReactElement<any>, { isHovered })
+  );
+
   return (
     <motion.div
       style={{
@@ -80,11 +85,7 @@ function DockItem({
       onBlur={() => isHovered.set(0)}
       {...rest}
     >
-      {Children.map(children, (child) =>
-        cloneElement(child as DetailedReactHTMLElement<any, HTMLElement>, {
-          isHovered,
-        })
-      )}
+      {enhancedChildren}
     </motion.div>
   );
 }
