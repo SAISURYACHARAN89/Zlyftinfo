@@ -10,9 +10,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   // Optional: Disable React strict mode if it causes warnings
-  reactStrictMode: false,
+  reactStrictMode: true,
   // Optional: Disable telemetry (just to clean logs)
-  telemetry: false,
 };
 
 export default nextConfig;
