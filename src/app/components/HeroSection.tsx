@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
-import VerticalTimeLine from './VerticalTimeline';
+import VerticalTimeLine from './VerticalTimeLine';
 
 export default function HeroSection() {
   const [isTimelineVisible, setIsTimelineVisible] = useState(false);
