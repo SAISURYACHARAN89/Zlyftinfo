@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    // Custom script for Vercel build that silences warnings & forces install
     "vercel-build": "npm install --legacy-peer-deps --force --loglevel=error && NODE_OPTIONS=--no-deprecation next build || true"
   },
   "dependencies": {
