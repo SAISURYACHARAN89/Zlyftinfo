@@ -1,6 +1,10 @@
 'use client';
 
-import AboutUs from '../components/AboutUs.jsx';
+import dynamic from 'next/dynamic';
+
+const AboutUs = dynamic(() => import('../components/AboutUs.jsx'), {
+  ssr: false,
+});
 
 export default function Page() {
   return <AboutUs />;
