@@ -27,6 +27,7 @@ export default function HeroSection() {
       </div>
 
       {/* Button */}
+      <div style={{height : "40px"}}></div>
       <div className="w-[80%] max-w-4xl mb-10 flex justify-center">
         <motion.button
           onClick={handleClick}

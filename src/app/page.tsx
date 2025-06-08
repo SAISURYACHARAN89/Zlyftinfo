@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import Dock from './components/Dock';
 import Footer from './components/Footer';
 import { TbDrone } from "react-icons/tb";
@@ -12,8 +13,11 @@ import Image from 'next/image';
 import Contact from './components/Contact';
 import EarthCanvas from './components/Earth';
 import HeroSection from "./components/HeroSection";
+import AboutUs from "./components/AboutUs";
+
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     function handleResize() {
@@ -26,14 +30,16 @@ export default function Home() {
 
   return (
     <main className="flex flex-col min-h-screen bg-black text-white overflow-x-hidden">
-
       {/* Fixed Dock */}
       <div>
         <Dock
           items={[
             { icon: <VscHome size={22} />, label: 'Home', onClick: () => alert('Home!') },
-            { icon: <TbDrone size={22} />, label: 'Technology', onClick: () => alert('Technology!') },
-            { icon: <AiOutlineTeam size={22} />, label: 'Team', onClick: () => alert('Team!') },
+            { 
+              icon: <AiOutlineTeam size={22} />, 
+              label: 'Team', 
+              onClick: () => router.push('/aboutus') // Changed to use router navigation
+            },
           ]}
           panelHeight={68}
           baseItemSize={54}
@@ -42,7 +48,6 @@ export default function Home() {
           spring={{ mass: 0.1, stiffness: 150, damping: 12 }}
         />
       </div>
-
       {/* Hero Section with Particles */}
       <div className="relative w-[95%] max-w-screen-xl mx-auto mt-4 rounded-[40px] overflow-hidden shadow-2xl bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a] to-[#1f1f1f]">
         <div className="relative w-full h-[600px] sm:h-[500px] md:h-[550px] lg:h-[600px]">
@@ -84,112 +89,117 @@ export default function Home() {
         <Image
           src="/assets/pic1.png"
           alt="Hero Background"
-          width={600}
-          height={200}
-          className="w-[80%] max-w-[600px] rounded-xl sm:w-full"
+          width={1200}
+          height={350}
+          className="w-[80%] max-w-[1200px] rounded-xl sm:w-full"
           style={{ transform: 'translateY(45px)' }}
           unoptimized
         />
 
-        {/* Dot 1 */}
-        <div className="absolute top-[50px] left-[54.5%] z-[60]">
-          <div className="relative group">
-            <div className="w-6 h-6 bg-black rounded-full shadow-[0_0_15px_5px_rgba(255,255,255,0.6)] animate-pulse cursor-pointer ring-2 ring-white ring-opacity-80" />
-            <div className="absolute bottom-0 left-1/2 h-0 w-[2px] bg-black/50 group-hover:h-16 transition-all duration-500 ease-out origin-bottom transform -translate-x-1/2">
-              <div className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
-            </div>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-0 group-hover:-translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end pb-2">
-              <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
-                <div className="flex items-center gap-2">
-                  <span className="text-cyan-300 text-lg">🚀</span>
-                  <span className="font-medium">30 Km range</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dot 2 */}
-        <div className="absolute top-[150px] right-[57%] z-[60]">
-          <div className="relative group">
-            <div className="w-6 h-6 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] animate-pulse cursor-pointer ring-2 ring-white ring-opacity-80" />
-            <div className="absolute bottom-0 right-1/2 h-0 w-[2px] bg-white/50 group-hover:h-16 transition-all duration-500 ease-out origin-bottom transform translate-x-1/2">
-              <div className="absolute bottom-0 right-0 w-full h-0 bg-gradient-to-t from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
-            </div>
-            <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 translate-y-0 group-hover:-translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end pb-2">
-              <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-300 text-lg">📦</span>
-                  <span className="font-medium">5kg payload capacity</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dot 3 */}
-        <div className="absolute bottom-[40px] left-[56%] z-[60]">
-          <div className="relative group">
-            <div className="w-6 h-6 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] animate-pulse cursor-pointer ring-2 ring-white ring-opacity-80" />
-            <div className="absolute top-0 left-1/2 h-0 w-[2px] bg-white/50 group-hover:h-16 transition-all duration-500 ease-out origin-top transform -translate-x-1/2">
-              <div className="absolute top-0 left-0 w-full h-0 bg-gradient-to-b from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
-            </div>
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-0 group-hover:translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-start pt-2">
-              <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
-                <div className="flex items-center gap-2">
-                  <span className="text-pink-300 text-lg">🤖</span>
-                  <span className="font-medium">Level 4 autonomous flights</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dot 4 */}
-        <div className="absolute bottom-[30px] right-[50%] z-[60]">
-          <div className="relative group">
-            <div className="w-6 h-6 bg-white rounded-full shadow-[0_0_12px_4px_rgba(255,255,255,0.9)] animate-pulse cursor-pointer ring-2 ring-white ring-opacity-80" />
-            <div className="absolute top-0 right-1/2 h-0 w-[2px] bg-white/50 group-hover:h-16 transition-all duration-500 ease-out origin-top transform translate-x-1/2">
-              <div className="absolute top-0 right-0 w-full h-0 bg-gradient-to-b from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
-            </div>
-            <div className="absolute top-0 right-1/2 transform translate-x-1/2 translate-y-0 group-hover:translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-start pt-2">
-              <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
-                <div className="flex items-center gap-2">
-                  <span className="text-emerald-300 text-lg">🔇</span>
-                  <span className="font-medium">Minimal noise emissions</span>
-                </div>
-              </div>
-            </div>
-          </div>
+       {/* Dot 1 */}
+<div className="absolute top-[50px] left-[54.5%] z-[60]">
+  <div className="relative group">
+    <div className="relative w-15 h-15 rounded-full cursor-pointer ring-2 ring-black ring-opacity-80">
+      <div className="absolute inset-0 bg-black rounded-full z-10" />
+      <div className="absolute inset-0 rounded-full shadow-[0_0_15px_4px_rgba(255,255,255,0.9)] z-0" />
+    </div>
+    <div className="absolute bottom-0 left-1/2 h-0 w-[2px] bg-black/50 group-hover:h-16 transition-all duration-500 ease-out origin-bottom transform -translate-x-1/2">
+      <div className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
+    </div>
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-0 group-hover:-translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end pb-2">
+      <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
+        <div className="flex items-center gap-2">
+          <span className="text-cyan-300 text-lg">🚀</span>
+          <span className="font-medium">30 Km range</span>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+{/* Dot 2 */}
+<div className="absolute top-[150px] right-[57%] z-[60]">
+  <div className="relative group">
+    <div className="relative w-10 h-10 rounded-full cursor-pointer ring-2 ring-black ring-opacity-80">
+      <div className="absolute inset-0 bg-black rounded-full z-10" />
+      <div className="absolute inset-0 rounded-full shadow-[0_0_15px_4px_rgba(255,255,255,0.9)] z-0" />
+    </div>
+    <div className="absolute bottom-0 right-1/2 h-0 w-[2px] bg-black/50 group-hover:h-16 transition-all duration-500 ease-out origin-bottom transform translate-x-1/2">
+      <div className="absolute bottom-0 right-0 w-full h-0 bg-gradient-to-t from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
+    </div>
+    <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 translate-y-0 group-hover:-translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end pb-2">
+      <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
+        <div className="flex items-center gap-2">
+          <span className="text-indigo-300 text-lg">📦</span>
+          <span className="font-medium">5kg payload capacity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Dot 3 */}
+<div className="absolute bottom-[40px] left-[56%] z-[60]">
+  <div className="relative group">
+    <div className="relative w-10 h-10 rounded-full cursor-pointer ring-2 ring-black ring-opacity-80">
+      <div className="absolute inset-0 bg-black rounded-full z-10" />
+      <div className="absolute inset-0 rounded-full shadow-[0_0_15px_4px_rgba(255,255,255,0.9)] z-0" />
+    </div>
+    <div className="absolute top-0 left-1/2 h-0 w-[2px] bg-black/50 group-hover:h-16 transition-all duration-500 ease-out origin-top transform -translate-x-1/2">
+      <div className="absolute top-0 left-0 w-full h-0 bg-gradient-to-b from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
+    </div>
+    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 translate-y-0 group-hover:translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-start pt-2">
+      <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
+        <div className="flex items-center gap-2">
+          <span className="text-pink-300 text-lg">🤖</span>
+          <span className="font-medium">Level 4 autonomous flights</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Dot 4 */}
+<div className="absolute bottom-[30px] right-[50%] z-[60]">
+  <div className="relative group">
+    <div className="relative w-10 h-10 rounded-full cursor-pointer ring-2 ring-black ring-opacity-80">
+      <div className="absolute inset-0 bg-black rounded-full z-10" />
+      <div className="absolute inset-0 rounded-full shadow-[0_0_15px_4px_rgba(255,255,255,0.9)] z-0" />
+    </div>
+    <div className="absolute top-0 right-1/2 h-0 w-[2px] bg-black/50 group-hover:h-16 transition-all duration-500 ease-out origin-top transform translate-x-1/2">
+      <div className="absolute top-0 right-0 w-full h-0 bg-gradient-to-b from-white to-transparent group-hover:h-full transition-all duration-300 delay-100" />
+    </div>
+    <div className="absolute top-0 right-1/2 transform translate-x-1/2 translate-y-0 group-hover:translate-y-20 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-start pt-2">
+      <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-sm text-white text-sm px-4 py-3 rounded-lg shadow-2xl border border-gray-700 max-w-[220px]">
+        <div className="flex items-center gap-2">
+          <span className="text-emerald-300 text-lg">🔇</span>
+          <span className="font-medium">Minimal noise emissions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
       <div className="mt-20">
+    {/* <div style={{height : "0px"}}></div> */}
   <HeroSection />
 </div>
       {/* Contact and Earth Section */}
 <section className="w-full max-w-screen-xl mx-auto px-4 py-10">
-  {isMobile ? (
-    <div className="flex flex-col gap-10 items-center">
-      <div className="w-full max-w-[450px]">
-        <Contact />
-      </div>
-      <div className="w-full h-[350px] sm:h-[400px]">
-        <EarthCanvas />
-      </div>
+  <div className="flex flex-col gap-10 items-center">
+    {/* Globe at the top */}
+    <div className="w-full h-[350px] sm:h-[450px] ">
+      <EarthCanvas />
     </div>
-  ) : (
-    <div className="grid grid-cols-12 gap-8 items-center">
-      <div className="col-span-5 flex justify-center">
-        <div className="w-full max-w-[450px]">
-          <Contact />
-        </div>
-      </div>
-      <div className="col-span-7 h-[450px]">
-        <EarthCanvas />
-      </div>
+
+    {/* Contact form below */}
+    <div className="w-full max-w-[450px]">
+      <Contact />
     </div>
-  )}
+  </div>
 </section>
+
 
       {/* Footer */}
       <Footer />

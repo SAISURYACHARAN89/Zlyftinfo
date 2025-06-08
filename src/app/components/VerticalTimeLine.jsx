@@ -36,7 +36,7 @@ export default function DroneDeliveryTimeline() {
         iconStyle={{ background: '#4caf50', color: '#fff' }}
         icon={<FaBox />}
       >
-        <h3 className="vertical-timeline-element-title">Order Placed</h3>
+        <h3 className="vertical-timeline-element-title">Order Placed - 9.29am</h3>
         <p>The customer confirmed the order.</p>
       </VerticalTimelineElement>
 
@@ -48,7 +48,7 @@ export default function DroneDeliveryTimeline() {
         iconStyle={{ background: '#2196f3', color: '#fff' }}
         icon={<FaCogs />}
       >
-        <h3 className="vertical-timeline-element-title">Order Processed</h3>
+        <h3 className="vertical-timeline-element-title">Order Processed - 9.30am</h3>
         <p>Items packed and drone dispatched.</p>
       </VerticalTimelineElement>
 
@@ -60,7 +60,7 @@ export default function DroneDeliveryTimeline() {
         iconStyle={{ background: '#ff9800', color: '#fff' }}
         icon={<FaWarehouse />}
       >
-        <h3 className="vertical-timeline-element-title">Order Docked</h3>
+        <h3 className="vertical-timeline-element-title">Order Docked - 9.31am</h3>
         <p>Drone loaded and ready for flight.</p>
       </VerticalTimelineElement>
 
@@ -72,7 +72,7 @@ export default function DroneDeliveryTimeline() {
         iconStyle={{ background: '#9c27b0', color: '#fff' }}
         icon={<FaUserCheck />}
       >
-        <h3 className="vertical-timeline-element-title">Order Delivered</h3>
+        <h3 className="vertical-timeline-element-title">Order Delivered - 9.38am</h3>
         <p>Package reached the customer safely.</p>
       </VerticalTimelineElement>
 
@@ -84,7 +84,7 @@ export default function DroneDeliveryTimeline() {
         iconStyle={{ background: '#607d8b', color: '#fff' }}
         icon={<FaRocket />}
       >
-        <h3 className="vertical-timeline-element-title">Drone Returned to Hub</h3>
+        <h3 className="vertical-timeline-element-title">Drone Returned to Hub - 9.46am</h3>
         <p>Drone completed the mission and landed back.</p>
       </VerticalTimelineElement>
     </VerticalTimeline>

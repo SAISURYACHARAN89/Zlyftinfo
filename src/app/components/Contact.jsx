@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { styles } from "../components/styles";
 import SectionWrapper from "../components/SectionWrapper";
-import { slideIn, staggerContainer, fadeIn } from "./Motion";
+import { staggerContainer, fadeIn } from "./Motion";
 
 const Contact = () => {
   const formRef = useRef();
@@ -58,16 +58,13 @@ const Contact = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
-      className="flex flex-col md:flex-row items-start justify-between gap-10 p-6 md:p-12 xl:p-16 relative w-full"
+      className="flex flex-col items-center justify-center p-6 md:p-12 xl:p-16 relative w-full -mt-16 md:-mt-24 xl:-mt-32"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
 
-      {/* Contact Form (left) */}
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className="w-full md:w-[45%] xl:w-[40%] min-w-[320px] bg-black/40 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-2xl"
-      >
+      {/* Centered Form Container */}
+      <div className="w-full max-w-lg bg-black/40 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-2xl text-center">
         <p className={`${styles.sectionSubText} text-gray-300`}>Get in touch</p>
         <h3 className={`${styles.sectionHeadText} text-white`}>Contact</h3>
 
@@ -89,11 +86,11 @@ const Contact = () => {
           <motion.form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="mt-8 flex flex-col gap-6"
+            className="mt-8 flex flex-col items-center gap-6"
             variants={fadeIn("up", "tween", 0.4, 1)}
           >
             {/* Name Field */}
-            <label className="flex flex-col gap-2">
+            <label className="w-full flex flex-col gap-2 text-left">
               <span className="text-white font-semibold">Your Name</span>
               <input
                 type="text"
@@ -108,7 +105,7 @@ const Contact = () => {
             </label>
 
             {/* Email Field */}
-            <label className="flex flex-col gap-2">
+            <label className="w-full flex flex-col gap-2 text-left">
               <span className="text-white font-semibold">Your Email</span>
               <input
                 type="email"
@@ -123,7 +120,7 @@ const Contact = () => {
             </label>
 
             {/* Message Field */}
-            <label className="flex flex-col gap-2">
+            <label className="w-full flex flex-col gap-2 text-left">
               <span className="text-white font-semibold">Your Message</span>
               <textarea
                 rows={5}
@@ -138,24 +135,20 @@ const Contact = () => {
             </label>
 
             {/* Submit Button */}
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full sm:w-fit px-8 py-3 rounded-xl text-white font-semibold 
-                bg-gradient-to-tr from-emerald-600 to-emerald-400 shadow-lg 
-                hover:from-emerald-500 hover:to-emerald-300 hover:shadow-emerald-500/30
-                active:scale-95 transition-all duration-300 
-                ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full px-8 py-3 rounded-xl text-white font-semibold 
+              bg-gradient-to-tr from-emerald-600 to-emerald-400 shadow-lg 
+              hover:from-emerald-500 hover:to-emerald-300 hover:shadow-emerald-500/30
+              active:scale-95 transition-all duration-300 
+              ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
           </motion.form>
         )}
-      </motion.div>
-
-    
+      </div>
     </motion.div>
   );
 };
